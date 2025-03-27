@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sempurna - For My Sayang ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #89CFF0, #B6D8E8);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+        }
+        
+        .slideshow-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto 30px;
+            border-radius: 10px;
+        }
+        
+        .slideshow {
+            display: flex;
+            height: 350px;
+            align-items: center;
+            transition: transform 0.8s ease;
+        }
+        
+        .slide {
+            min-width: 300px;
+            padding: 0 15px;
+            text-align: center;
+        }
+        
+        .slide img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border: 4px solid #000080;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        button {
+            background-color: #000080;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background-color: #1a1a8c;
+            transform: translateY(-2px);
+        }
+        
+        .lyrics-container {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #000080;
+        }
+        
+        .lyrics-text {
+            font-size: 1.4rem;
+            color: #000080;
+            font-weight: 600;
+            line-height: 1.6;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+        
+        .translation {
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 24px;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .gap-indicator {
+            font-size: 1.2rem;
+            color: #888;
+            font-style: italic;
+            margin: 15px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> hai sayang, this is for you. this is sign to make forgive because yesterday issue. 
+            i make this with full of my effort and the truth that i love you. enjoy the show and i love you sayang!!❤️❤️❤️</h1>
+        
+        <div class="slideshow-container">
+            <div class="slideshow" id="slideshow"></div>
+        </div>
+        
+        <div class="controls">
+            <button id="playButton">▶ Play</button>
+            <audio id="slideshowAudio">
+                <source src="sempurna.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        
+        <div class="lyrics-container">
+            <div class="lyrics-text" id="lyricsText">
+                Music will begin with 10 second intro...
+            </div>
+            <div class="heart" style="top:-15px;left:20px;">❤️</div>
+            <div class="heart" style="bottom:-15px;right:20px;">❤️</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image data
+            const images = [
+                { src: 'image/sayang1.jpg', caption: 'this is my sayang' },
+                { src: 'image/sayang2.jpg', caption: 'her name is nurul atikah binti rosli' },
+                { src: 'image/sayang3.jpg', caption: 'i do love her not because just shes pretty' },
+                { src: 'image/sayang4.jpg', caption: 'i love her because of her attitude' },
+                { src: 'image/sayang5.jpg', caption: 'her kindness' },
+                { src: 'image/sayang6.jpg', caption: 'all the good thing about her' },
+                { src: 'image/sayang7.jpg', caption: 'i never bored with her' },
+                { src: 'image/sayang8.jpg', caption: 'i love you sayang from the ocean to the moon and back with full of my heart to you' }
+            ];
+            
+            // DOM elements
+            const slideshow = document.getElementById('slideshow');
+            const playButton = document.getElementById('playButton');
+            const audio = document.getElementById('slideshowAudio');
+            const lyricsText = document.getElementById('lyricsText');
+            
+            // Create slides
+            images.forEach(img => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.innerHTML = `
+                    <img src="${img.src}" alt="${img.caption}" loading="eager">
+                    <p>${img.caption}</p>
+                `;
+                slideshow.appendChild(slide);
+            });
+            
+            // Complete lyrics with 10 second intro and 5-7 second gaps between sections
+            const lyrics = [
+                // Intro (10 seconds)
+                { time: 0, text: "🎵 Instrumental Intro 🎵", trans: "", section: "Intro", gapAfter: 10 },
+                
+                // Verse 1 (with 6 second gap after)
+                { time: 10, text: "Kau begitu sempurna", trans: "You are so perfect", section: "Verse 1" },
+                { time: 14, text: "Di mataku kau begitu indah", trans: "In my eyes you are so beautiful", section: "Verse 1" },
+                { time: 18, text: "Kau membuat diriku", trans: "You make me", section: "Verse 1" },
+                { time: 22, text: "Akan selalu memujamu", trans: "Always praise you", section: "Verse 1", gapAfter: 6 },
+                
+                // Verse 2 (with 6 second gap after)
+                { time: 28, text: "Di setiap langkahku", trans: "In every step I take", section: "Verse 2" },
+                { time: 32, text: "'Ku 'kan selalu memikirkan dirimu", trans: "I'll always think of you", section: "Verse 2" },
+                { time: 36, text: "Tak bisa ku bayangkan", trans: "I can't imagine", section: "Verse 2" },
+                { time: 40, text: "Hidupku tanpa cintamu", trans: "My life without your love", section: "Verse 2", gapAfter: 6 },
+                
+                // Pre-Chorus 1 (with 6 second gap after)
+                { time: 46, text: "Janganlah kau tinggalkan diriku", trans: "Please don't leave me", section: "Pre-Chorus" },
+                { time: 50, text: "Takkan mampu menghadapi semua", trans: "I couldn't face everything", section: "Pre-Chorus" },
+                { time: 54, text: "Hanya bersamamu 'ku akan bisa", trans: "Only with you I can do it", section: "Pre-Chorus", gapAfter: 6 },
+                
+                // Chorus 1 (with 6 second gap after)
+                { time: 60, text: "Kau adalah darahku", trans: "You are my blood", section: "Chorus" },
+                { time: 64, text: "Kau adalah jantungku", trans: "You are my heart", section: "Chorus" },
+                { time: 68, text: "Kau adalah hidupku", trans: "You are my life", section: "Chorus" },
+                { time: 72, text: "Lengkapi diriku", trans: "Complete me", section: "Chorus" },
+                { time: 76, text: "Oh, sayangku kau begitu", trans: "Oh, my love you are so", section: "Chorus", gapAfter: 6 },
+                
+                // Post-Chorus 1 (with 6 second gap after)
+                { time: 82, text: "Sempurna", trans: "Perfect", section: "Post-Chorus" },
+                { time: 86, text: "Sempurna", trans: "Perfect", section: "Post-Chorus", gapAfter: 6 },
+                
+                // Verse 3 (with 6 second gap after)
+                { time: 92, text: "Kau genggam tanganku", trans: "You hold my hand", section: "Verse 3" },
+                { time: 96, text: "Saat diriku lemah dan terjatuh", trans: "When I'm weak and falling", section: "Verse 3" },
+                { time: 100, text: "Kau bisikkan kata", trans: "You whisper words", section: "Verse 3" },
+                { time: 104, text: "Dan hapus semua sesalku", trans: "And erase all my regrets", section: "Verse 3", gapAfter: 6 },
+                
+                // Pre-Chorus 2 (with 6 second gap after)
+                { time: 110, text: "Janganlah kau tinggalkan diriku", trans: "Please don't leave me", section: "Pre-Chorus" },
+                { time: 114, text: "Takkan mampu menghadapi semua", trans: "I couldn't face everything", section: "Pre-Chorus" },
+                { time: 118, text: "Hanya bersamamu 'ku akan bisa", trans: "Only with you I can do it", section: "Pre-Chorus", gapAfter: 6 },
+                
+                // Chorus 2 (with 6 second gap after)
+                { time: 124, text: "Kau adalah darahku", trans: "You are my blood", section: "Chorus" },
+                { time: 128, text: "Kau adalah jantungku", trans: "You are my heart", section: "Chorus" },
+                { time: 132, text: "Kau adalah hidupku", trans: "You are my life", section: "Chorus" },
+                { time: 136, text: "Lengkapi diriku", trans: "Complete me", section: "Chorus" },
+                { time: 140, text: "Oh, sayangku kau begitu", trans: "Oh, my love you are so", section: "Chorus", gapAfter: 6 },
+                
+                // Post-Chorus 2 (with 6 second gap after)
+                { time: 146, text: "Sempurna", trans: "Perfect", section: "Post-Chorus" },
+                { time: 150, text: "Sempurna", trans: "Perfect", section: "Post-Chorus", gapAfter: 6 },
+                
+                // Instrumental Break (10 seconds)
+                { time: 156, text: "🎶 Instrumental Break 🎶", trans: "", section: "Instrumental", gapAfter: 10 },
+                
+                // Final Chorus (with 6 second gap after)
+                { time: 166, text: "Kau adalah darahku (Darahku)", trans: "You are my blood (My blood)", section: "Final Chorus" },
+                { time: 170, text: "Kau adalah jantungku (Jantungku)", trans: "You are my heart (My heart)", section: "Final Chorus" },
+                { time: 174, text: "Kau adalah hidupku", trans: "You are my life", section: "Final Chorus" },
+                { time: 178, text: "Lengkapi diriku", trans: "Complete me", section: "Final Chorus" },
+                { time: 182, text: "Oh, sayangku kau begitu", trans: "Oh, my love you are so", section: "Final Chorus", gapAfter: 6 },
+                
+                // Outro
+                { time: 188, text: "❤️ Untuk sayangku ❤️", trans: "❤️ For my love ❤️", section: "Outro" }
+            ];
+            
+            // Slideshow variables
+            let currentIndex = 0;
+            let isPlaying = false;
+            let slideInterval;
+            const slideDuration = 4000; // 4 seconds per slide
+            
+            // Initialize slideshow
+            function updateSlidePosition() {
+                slideshow.style.transform = `translateX(-${currentIndex * 330}px)`;
+            }
+            
+            // Lyrics display function with gap handling
+            function updateLyrics() {
+                const currentTime = audio.currentTime;
+                let currentLyric = {text: "", trans: "", section: ""};
+                let inGap = false;
+                
+                // Find current lyric or gap
+                for (let i = 0; i < lyrics.length; i++) {
+                    const lyric = lyrics[i];
+                    
+                    // Check if we're in a lyric's time range
+                    if (currentTime >= lyric.time && 
+                        (i === lyrics.length - 1 || currentTime < lyrics[i+1].time)) {
+                        currentLyric = lyric;
+                        
+                        // Check if we're in the gap after this lyric
+                        if (lyric.gapAfter && currentTime > lyric.time + (lyric.gapAfter - 2)) {
+                            inGap = true;
+                            currentLyric = {
+                                text: "~ Musical Pause ~",
+                                trans: "",
+                                section: "",
+                                isGap: true
+                            };
+                        }
+                        break;
+                    }
+                }
+                
+                // Default display for intro
+                if (currentTime < lyrics[0].time) {
+                    currentLyric = {
+                        text: "🎵 Instrumental Intro 🎵",
+                        trans: "",
+                        section: "Intro"
+                    };
+                }
+                
+                // Format the display
+                if (currentLyric.isGap) {
+                    lyricsText.innerHTML = `
+                        <div class="gap-indicator">[Musical interlude...]</div>
+                    `;
+                } else {
+                    let sectionHtml = currentLyric.section ? `<div class="section-label">${currentLyric.section}</div>` : '';
+                    let translationHtml = currentLyric.trans ? `<div class="translation">${currentLyric.trans}</div>` : '';
+                    
+                    lyricsText.innerHTML = `
+                        ${sectionHtml}
+                        <div>${currentLyric.text}</div>
+                        ${translationHtml}
+                    `;
+                }
+                
+                if (!audio.paused) {
+                    requestAnimationFrame(updateLyrics);
+                }
+            }
+            
+            // Play/pause functionality
+            function togglePlayback() {
+                if (isPlaying) {
+                    audio.pause();
+                    clearInterval(slideInterval);
+                    playButton.textContent = '▶ Play';
+                } else {
+                    audio.play();
+                    slideInterval = setInterval(() => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateSlidePosition();
+                    }, slideDuration);
+                    playButton.textContent = '⏸ Pause';
+                    updateLyrics();
+                }
+                isPlaying = !isPlaying;
+            }
+            
+            // Event listeners
+            playButton.addEventListener('click', togglePlayback);
+            audio.addEventListener('ended', () => {
+                clearInterval(slideInterval);
+                isPlaying = false;
+                playButton.textContent = '▶ Play';
+                lyricsText.innerHTML = 'Thank you for watching ❤️';
+            });
+            
+            // Initial setup
+            updateSlidePosition();
+        });
+    </script>
+</body>
+</html>
